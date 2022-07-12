@@ -1,4 +1,3 @@
-/*
 let { db } = require("../config/db");
 
 const retrieveHintsByCountryAndDifficulty = (req, resp) => {
@@ -45,4 +44,4 @@ const retrieveAll = (req, resp) => {
     } )
 }
 
-module .exports = { retrieveHintsByCountryAndDifficulty }*/
+module .exports = { retrieveHintsByCountryAndDifficulty }

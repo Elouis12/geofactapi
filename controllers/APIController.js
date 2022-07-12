@@ -1,4 +1,3 @@
-/*
 let {
     retrieveHintsByCountryAndDifficulty
 
@@ -151,4 +150,4 @@ module.exports = {
                    getGeoHintsByCountryAndDifficulty,
                    getGeoHintsByCountryAndDifficultyWithLimit
 
-                 }*/
+                 }

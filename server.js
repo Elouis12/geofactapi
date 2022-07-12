@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
-// const mysql = require('mysql');
-// const { db } = require("./config/db");
+const mysql = require('mysql');
+const { db } = require("./config/db");
 const dotEnv = require("dotenv");
 dotEnv.config();
 
@@ -10,14 +10,16 @@ app.use( cors() );
 
 
 
-// const hintRoutes = require("./routes/geoRoutes");
-// app.use('/countries', hintRoutes);
+const hintRoutes = require("./routes/geoRoutes");
+app.use('/countries', hintRoutes);
 
 
+/*
 app.get('/', (req, resp)=>{
 
     resp.send({message : ":("});
 });
+*/
 
 
 

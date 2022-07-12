@@ -1,4 +1,3 @@
-/*
 const express = require("express");
 const router = express.Router();
 
@@ -24,4 +23,4 @@ router
 // router.get('/:country/:difficulty', getGeoHintsByCountry );
 
 
-module.exports = router;*/
+module.exports = router;
