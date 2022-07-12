@@ -1,4 +1,4 @@
-#USING GEO FACTS API
+# USING GEO FACTS API
 
 
 ## 1. Get All Countries and Facts
@@ -17,7 +17,7 @@
 
 
 
-#UPLOADING TO HEROKU
+# UPLOADING TO HEROKU
 
 1. Download the CLI [here](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli)
 2. open CMD line
