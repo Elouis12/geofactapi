@@ -49,7 +49,8 @@ const getCountries = (req, resp) => {
 // GETS THE LIST OF COUNTRIES AVAILABLE WITH THER COORDINATES
 const getCountriesAndCoords = (req, resp) => {
 
-    const sql = `
+    // since we don't have all countries with facts we can use the query below for the ones that do
+/*    const sql = `
     
     SELECT 
         country,
@@ -58,6 +59,19 @@ const getCountriesAndCoords = (req, resp) => {
     FROM 
         countries
         ;
+    `*/
+
+
+    const sql = `
+    
+            SELECT
+                country,
+                lat,
+                lon
+            FROM countries
+            INNER JOIN facts
+            WHERE countries.id = facts.country_id 
+            GROUP BY country;
     `
 
     db.query( sql, (err, result) => {
