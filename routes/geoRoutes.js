@@ -8,6 +8,7 @@ const { getCountries,
         getGeoHintsByCountry,
         getGeoHintsByCountryAndDifficulty,
         getGeoHintsByCountryAndDifficultyWithLimit,
+        getGeoHintsByCountryWithLimit,
         play
 } = require("../controllers/APIController");
 
@@ -21,8 +22,9 @@ router
     .get('/coords', getCountries)
     .get( '/all', getALL )
     .get( '/:country', getGeoHintsByCountry  )
-    .get('/:country/:difficulty', getGeoHintsByCountryAndDifficulty )
+    .get('/:country/dif/:difficulty', getGeoHintsByCountryAndDifficulty )
     .get('/:country/:difficulty/:limit', getGeoHintsByCountryAndDifficultyWithLimit )
+    .get('/:country/:limit', getGeoHintsByCountryWithLimit )
 
     // SERVE HTML FILES
 

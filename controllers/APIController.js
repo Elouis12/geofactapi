@@ -115,7 +115,7 @@ const getGeoHintsByCountry = (req, resp) => {
         INNER JOIN facts
         WHERE countries.id = facts.country_id 
                 AND
-            country = LOWER('${req.params.country}');
+              country = LOWER('${req.params.country}');
     `
 
     db.query( sql, (err, result) => {
@@ -145,9 +145,9 @@ const getGeoHintsByCountryAndDifficulty = (req, resp) => {
         INNER JOIN facts
         WHERE countries.id = facts.country_id 
                 AND 
-            country = LOWER('${req.params.country}')
+              country = LOWER('${req.params.country}')
                 AND 
-            difficulty = '${req.params.difficulty}';
+              difficulty = '${req.params.difficulty}';
     `
     db.query( sql, (err, result) => {
 
@@ -176,9 +176,39 @@ const getGeoHintsByCountryAndDifficultyWithLimit = (req, resp) => {
         INNER JOIN facts
         WHERE countries.id = facts.country_id 
                 AND 
-            country = LOWER('${req.params.country}')
+              country = LOWER('${req.params.country}')
                 AND 
-            difficulty = '${req.params.difficulty}'
+              difficulty = '${req.params.difficulty}'
+        LIMIT ${req.params.limit};
+    `
+    db.query( sql, (err, result) => {
+
+        if( err ){ // if there's an error
+            throw err;
+        }else{ // if there's no error send us the result AKA query we just made
+
+            result.length === 0 ?
+                resp.json( { message : 'there are no facts available for this country with the given parameters' } )
+                :
+                resp.json(result);
+        }
+    } );
+    // resp.json(retrieveHintsByCountryAndDifficulty);
+
+}
+
+
+// GET HINT BY COUNTRY WITH LIMIT
+const getGeoHintsByCountryWithLimit = (req, resp) => {
+
+    const sql = `
+           SELECT
+            fact
+        FROM countries
+        INNER JOIN facts
+        WHERE countries.id = facts.country_id 
+                AND 
+              country = LOWER('${req.params.country}')
         LIMIT ${req.params.limit};
     `
     db.query( sql, (err, result) => {
@@ -204,6 +234,7 @@ module.exports = {
                    getALL,
                    getGeoHintsByCountry,
                    getGeoHintsByCountryAndDifficulty,
-                   getGeoHintsByCountryAndDifficultyWithLimit
+                   getGeoHintsByCountryAndDifficultyWithLimit,
+                   getGeoHintsByCountryWithLimit
 
                  }
