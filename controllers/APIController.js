@@ -67,7 +67,9 @@ const getCountriesAndCoords = (req, resp) => {
             SELECT
                 country,
                 lat,
-                lon
+                lon,
+                capital,
+                flag
             FROM countries
             INNER JOIN facts
             WHERE countries.id = facts.country_id 
@@ -97,7 +99,7 @@ const getALL = (req, resp) => {
             SELECT
             country, 
             fact,
-            difficulty
+            difficulty,
         FROM countries
         INNER JOIN facts
         where countries.id = facts.country_id;
