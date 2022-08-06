@@ -9,14 +9,8 @@ let cors = require('cors');
 app.use( cors() );
 
 
-const path = require('path');
-
 const hintRoutes = require("./routes/geoRoutes");
 app.use('/countries', hintRoutes);
-
-const siteRoutes = require("./routes/siteRoutes");
-app.use('/', siteRoutes);
-
 
 
 

@@ -47,7 +47,7 @@ const getCountries = (req, resp) => {
 
 
 // GETS THE LIST OF COUNTRIES AVAILABLE WITH THER COORDINATES
-const getCountriesAndCoords = (req, resp) => {
+const getFromCountriesAndFlagsTable = (req, resp) => {
 
     // since we don't have all countries with facts we can use the query below for the ones that do
 /*    const sql = `
@@ -63,17 +63,18 @@ const getCountriesAndCoords = (req, resp) => {
 
 
     const sql = `
-    
-            SELECT
+
+            SELECT 
                 country,
+                capital,
                 lat,
                 lon,
-                capital,
-                flag
+                flag_image,
+                flag_emoji
             FROM countries
-            INNER JOIN facts
-            WHERE countries.id = facts.country_id 
-            GROUP BY country;
+            INNER JOIN flags
+            where countries.id = flags.country_id
+
     `
 
     db.query( sql, (err, result) => {
@@ -96,7 +97,7 @@ const getALL = (req, resp) => {
 
     const sql = `
             
-            SELECT
+        SELECT
             country, 
             fact,
             difficulty,
@@ -119,6 +120,36 @@ const getALL = (req, resp) => {
 
 }
 
+
+const getFlags = ( req, resp ) => {
+
+
+
+    const sql = `
+    
+        SELECT          
+            flags.flag_image,
+            flags.flag_emoji
+        FROM flags
+        INNER JOIN countries
+        WHERE countries.id = flags.country_id 
+                AND
+              country = LOWER('${req.params.country}');
+    `
+
+    db.query( sql, (err, result) => {
+
+        if( err ){ // if there's an error
+            throw err;
+        }else{ // if there's no error send us the result AKA query we just made
+
+            result.length === 0 ?
+                resp.json( { message : 'there are no facts available for this country with the given parameters' } )
+                :
+                resp.json(result);
+        }
+    } )
+}
 // GET HINT BY COUNTRY
 const getGeoHintsByCountry = (req, resp) => {
 
@@ -246,11 +277,12 @@ const getGeoHintsByCountryWithLimit = (req, resp) => {
 module.exports = {
 
                    getCountries,
-                   getCountriesAndCoords,
+                   getFromCountriesAndFlagsTable,
                    getALL,
                    getGeoHintsByCountry,
                    getGeoHintsByCountryAndDifficulty,
                    getGeoHintsByCountryAndDifficultyWithLimit,
-                   getGeoHintsByCountryWithLimit
+                   getGeoHintsByCountryWithLimit,
+                   getFlags
 
                  }
