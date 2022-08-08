@@ -3,12 +3,11 @@ const router = express.Router();
 
 // CONTROLLERS
 const { getCountries,
-        getFromCountriesAndFlagsTable,
-        getALL,
-        getGeoHintsByCountry,
-        getGeoHintsByCountryAndDifficulty,
-        getGeoHintsByCountryAndDifficultyWithLimit,
-        getGeoHintsByCountryWithLimit,
+    getSpecificCountry,
+        getFacts,
+        getFactsByCountry,
+    getCountriesByLimit,
+    getFactsByCountryLimit,
         getFlags
 } = require("../controllers/APIController");
 
@@ -18,14 +17,12 @@ router
 
     // SERVE JSON
     .get('/', getCountries)
-    .get('/countriesandflags', getFromCountriesAndFlagsTable )
-    .get('/coords', getCountries )
-    .get( '/all', getALL )
-    .get( '/:country', getGeoHintsByCountry  )
-    .get('/:country/flags', getFlags ) // specifying the order is important
-    .get('/:country/dif/:difficulty', getGeoHintsByCountryAndDifficulty )
-    .get('/:country/:difficulty/:limit', getGeoHintsByCountryAndDifficultyWithLimit )
-    .get('/:country/:limit', getGeoHintsByCountryWithLimit )
+    .get( '/facts', getFacts )
+    .get('/flags', getFlags ) // specifying the order is important
+    // .get('/:limit', getCountriesByLimit)
+    .get('/:country', getSpecificCountry)
+    .get( '/facts/:country', getFactsByCountry )
+    .get( '/facts/:country/:limit', getFactsByCountryLimit )
 
     // SERVE HTML FILES
 

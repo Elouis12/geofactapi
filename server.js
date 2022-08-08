@@ -14,7 +14,7 @@ app.use('/countries', hintRoutes);
 
 
 
-let port = process.env.PORT || 5000;
+let port = process.env.PORT || 3000;
 
 
 
@@ -23,7 +23,7 @@ let port = process.env.PORT || 5000;
 
 
 // connect to the server
-app.listen(  process.env.PORT || 5000, ()=>{
+app.listen(  port, ()=>{
 
     console.log('connected to the server')
 
