@@ -6,6 +6,8 @@ let {
 let  { db } = require("../config/db");
 
 
+// PATH PARAMETERS
+
 // COUNTRIES
 
 const getSpecificCountry = (req, resp) => {
@@ -224,6 +226,16 @@ const getFlags = ( req, resp ) => {
                 resp.json(result);
         }
     } )
+}
+
+
+
+// QUERY STRING PARAMETERS
+
+let queryStrings = (req, resp)=>{
+
+    let { country, facts } = req.params;
+
 }
 
 module.exports = {
