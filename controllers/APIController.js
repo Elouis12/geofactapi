@@ -59,6 +59,7 @@ const getCountries = (req, resp) => {
             FROM countries
             INNER JOIN flags
             ON countries.id = flags.country_id
+            ORDER BY Country
 
     `
 
