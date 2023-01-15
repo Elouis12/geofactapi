@@ -16,7 +16,7 @@ const hintRoutes = require("./routes/geoRoutes");
 
 app.use('/countries', hintRoutes);
 
-app.all( "*", (req, resp)=>{
+app.all( "/*", (req, resp)=>{
 
     // '*' - works for all paths
     // resp.status(404).send('<h1>Resource not found </h1>');

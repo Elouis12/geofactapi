@@ -1,0 +1,51 @@
+STORING MYSQL DB TO HEROKU
+
+
+    video link
+
+    https://www.youtube.com/watch?v=lwOsI8LtVEQ
+
+    why do we need to do this?
+        heroku doesn't know
+
+
+    in short, we need to
+        * create a db with heroku
+        * port out local db into heroku's db we created
+
+
+    1. create app
+
+    2. go to resources within your app page
+
+    3. type "clearDB" (it's free) and submit the order for it
+
+    4. find the HOST, USERNAME, PASSWORD, and DB by going to:
+
+        1. settings
+        2. config vars
+        3. click reveal config vars
+        4. copy the string value
+
+        ex.  mysql://b0r79a57f4e700:0w9m37fe@us-cdbr-east-06.cleardb.net/heroku_f608468476a9858?reconnect=true
+
+            host: 'us-cdbr-east-06.cleardb.net',
+            user: 'b0r79a57f4e700',
+            password: '0w9m37fe',
+            database: 'heroku_f608468476a9858'
+
+        IN MYSQL WORKBENCH NOW
+
+    5. click/create a new connection and paste in those value
+
+    *. [ right click the db (heroku_euhe......) and make it a default schema ?? seems like i didn't have to ]
+
+    7. in your local db, right click the table(s) you want -> copy to clipboard -> create statement
+
+    7. paste that create statement into the heroku db and remove everything after and including "DEFAULT CHARSET..."
+
+    8. if you used "localhost:NUMBER/stuff" in your file remove it and
+       past it with the domain name of
+
+       so localhost:NUMBER/stuff -> heroku_project_name.herokuapp.com/stuff
+
