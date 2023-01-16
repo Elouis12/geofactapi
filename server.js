@@ -6,6 +6,7 @@ const { db } = require("./config/db");
 const dotEnv = require("dotenv");
 dotEnv.config();
 
+
 let cors = require('cors');
 app.use( cors() );
 
